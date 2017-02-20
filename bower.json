@@ -1,0 +1,6 @@
+{
+  "name": "asynchronous_chile",
+  "dependencies": {
+  	"admin-lte": "2.3.6"
+  }
+}

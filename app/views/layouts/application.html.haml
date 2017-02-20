@@ -1,0 +1,112 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %title AsynchronousChile
+    / Tell the browser to be responsive to screen width
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no", :name => "viewport"}/
+    / Bootstrap 3.3.6
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+    = stylesheet_link_tag "http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css"
+  / ADD THE CLASS fixed TO GET A FIXED HEADER AND SIDEBAR LAYOUT
+  / the fixed layout is not compatible with sidebar-mini
+  %body.hold-transition.skin-blue.fixed.sidebar-mini
+    / Site wrapper
+    .wrapper
+      %header.main-header
+        / Logo
+        %a.logo{:href => "../../index2.html"}
+          / mini logo for sidebar mini 50x50 pixels
+          %span.logo-mini
+            %b> A
+            LT
+          / logo for regular state and mobile devices
+          %span.logo-lg
+            %b> Admin
+            LTE
+        / Header Navbar: style can be found in header.less
+        %nav.navbar.navbar-static-top
+          / Sidebar toggle button
+          %a.sidebar-toggle{"data-toggle" => "offcanvas", :href => "#", :role => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+      / ===============================================
+      / Left side column. contains the sidebar
+      %aside.main-sidebar
+        / sidebar: style can be found in sidebar.less
+        %section.sidebar
+          / Sidebar user panel
+          .user-panel
+            .pull-left.image
+              %img.img-circle{:alt => "User Image", :src => "../../dist/img/user2-160x160.jpg"}/
+            .pull-left.info
+              = current_user.username
+              %a{:href => "#"}
+                %i.fa.fa-circle.text-success
+                Online
+          / search form
+          %form.sidebar-form{:action => "#", :method => "get"}
+            .input-group
+              %input.form-control{:name => "q", :placeholder => "Search...", :type => "text"}/
+              %span.input-group-btn
+                %button#search-btn.btn.btn-flat{:name => "search", :type => "submit"}
+                  %i.fa.fa-search
+          / /.search form
+          / sidebar menu: : style can be found in sidebar.less
+          %ul.sidebar-menu
+            %li.header MAIN NAVIGATION
+            %li.treeview
+              %a{:href => "#"}
+                %i.fa.fa-dashboard
+                %span Dashboard
+                %span.pull-right-container
+                  %i.fa.fa-angle-left.pull-right
+              %ul.treeview-menu
+                %li
+                  %a{:href => "#"}
+                    %i.fa.fa-circle-o
+                    Dashboard v1
+                %li
+                  %a{:href => "#"}
+                    %i.fa.fa-circle-o
+                    Dashboard v2
+        / /.sidebar
+      / ===============================================
+      / Content Wrapper. Contains page content
+      .content-wrapper
+        / Content Header (Page header)
+        = render 'layouts/messages'
+        %section.content-header
+          %h1
+            Fixed Layout
+            %small Blank example to the fixed layout
+          %ol.breadcrumb
+            %li
+              %a{:href => "#"}
+                %i.fa.fa-dashboard
+                Home
+            %li
+              %a{:href => "#"} Layout
+            %li.active Fixed
+        / Main content
+        %section.content
+          = yield
+        / /.content
+      / /.content-wrapper
+      %footer.main-footer
+        .pull-right.hidden-xs
+          %b Version
+          2.3.8
+        %strong
+          Copyright © 2014-2016
+          = succeed "." do
+            %a{:href => "http://almsaeedstudio.com"} Almsaeed Studio
+        All rights
+        reserved.
